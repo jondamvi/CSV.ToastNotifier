@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>5.0</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>CSV.ToastNotifier</AssemblyName>
+    <RootNamespace>$(AssemblyName)</RootNamespace>
+    
+    <!-- Build settings -->
+    <Optimize>false</Optimize>
+    <Deterministic>true</Deterministic>
+    <HighEntropyVA>true</HighEntropyVA>
+    
+    <!-- Debug settings -->
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    
+    <!-- Resources -->
+    <Win32Icon>Icon.ico</Win32Icon>
+    <Win32Manifest>$(AssemblyName).manifest</Win32Manifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    
+    <!-- Assembly info -->
+    <Company>Jon Damvi</Company>
+    <Product>CSV Toast Notifier</Product>
+    <Authors>Jon Damvi</Authors>
+    <Copyright>Copyright © 2025 Jon Damvi</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+
+    <!-- References Path Variables -->
+    <WindowsKitsRoot>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\Installed Roots', 'KitsRoot10', null, RegistryView.Registry32))</WindowsKitsRoot>
+    <WindowsSdkVersion>10.0.26100.0</WindowsSdkVersion>
+    <FrameworkRoot>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework', 'InstallRoot', null, RegistryView.Registry32))</FrameworkRoot>
+    <FrameworkVersion>4.0.30319</FrameworkVersion>
+  </PropertyGroup>
+
+  <!-- Windows Runtime references for .NET Framework -->
+  <ItemGroup>
+    <Reference Include="Windows">
+      <HintPath>$(WindowsKitsRoot)UnionMetadata\$(WindowsSdkVersion)\Windows.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.WindowsRuntime">
+      <HintPath>$(FrameworkRoot)v$(FrameworkVersion)\System.Runtime.WindowsRuntime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- Exclude System.Runtime.WindowsRuntime.dll -->
+    <None Remove="System.Runtime.WindowsRuntime.dll" CopyToPublishDirectory="Never"/>
+  </ItemGroup>
+  
+  <Target Name="RemoveConfigAfterPublish" AfterTargets="Publish">
+    <!-- Remove CSV.ToastNotifier.exe.config -->
+    <Delete Files="$(PublishDir)$(AssemblyName).exe.config" />
+    <!-- Remove obj and bin directories -->
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\obj" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\bin" />
+  </Target>
+</Project>
