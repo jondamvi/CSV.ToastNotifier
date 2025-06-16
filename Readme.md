@@ -86,7 +86,7 @@ CSV.ToastNotifier.exe -m "Important deadline" -s "TaskManager" --type reminder
 > CSV.ToastNotifier\Release\CSV.ToastNotifier.pdb
 > CSV.ToastNotifier\Source Files\Release\CSV.ToastNotifier.pdb
 > ```
-**build.bat** can perform 2 types of build: <u>LocalBuild</u> and <ins>ProjectBuild</ins>.
+**build.bat** can perform 2 types of build: **LocalBuild** and **ProjectBuild**.
 **build.bat** will choose build type automatically - based on location of **build.bat** file.
 ### <ins>Project Build</ins>:
 If running **build.bat** from 'CSV.ToastNotifier\Build System' output will be in 'CSV.ToastNotifier\Release'.
