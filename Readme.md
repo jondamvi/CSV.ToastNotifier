@@ -69,7 +69,7 @@ CSV.ToastNotifier.exe -m "Important deadline" -s "TaskManager" --type reminder
 
 ## 🔨 Building
 
-### Using 'build.bat':
+### Using **build.bat**:
 > [!IMPORTANT]
 > <u>Read before using</u> **build.bat**:
 > DO NOT COPY **build.bat** to other project directory without testing and modification of **build.bat** as needed.
@@ -86,11 +86,11 @@ CSV.ToastNotifier.exe -m "Important deadline" -s "TaskManager" --type reminder
 > CSV.ToastNotifier\Release\CSV.ToastNotifier.pdb
 > CSV.ToastNotifier\Source Files\Release\CSV.ToastNotifier.pdb
 > ```
-**build.bat** can perform 2 types of build: <u>LocalBuild</u> and <u>ProjectBuild</u>.
+**build.bat** can perform 2 types of build: <u>LocalBuild</u> and <ins>ProjectBuild</ins>.
 **build.bat** will choose build type automatically - based on location of **build.bat** file.
-### <u>Project Build</u>:
+### <ins>Project Build</ins>:
 If running **build.bat** from 'CSV.ToastNotifier\Build System' output will be in 'CSV.ToastNotifier\Release'.
-### <u>LocalBuild</u>:
+### <ins>LocalBuild</ins>:
 If running **build.bat** from 'CSV.ToastNotifier\Source Files' output will be in 'CSV.ToastNotifier\Source Files\Release'.
 
 **build.bat** supports compiling project '.csproj' file with MSBuild dotnet and supports compiling directly with .NET Framework 4.8 csc.exe.
