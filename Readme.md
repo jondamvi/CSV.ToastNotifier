@@ -69,10 +69,40 @@ CSV.ToastNotifier.exe -m "Important deadline" -s "TaskManager" --type reminder
 
 ## 🔨 Building
 
-### Using Build.bat
+### Using 'build.bat':
+### ! Important! Read before using 'build.bat'.
+### DO NOT COPY 'build.bat' to other project directory without testing and modification of 'build.bat' as needed.
+### 'build.bat' will perform cleanup of the following directories:
+```
+CSV.ToastNotifier\Source Files\bin
+CSV.ToastNotifier\Source Files\obj
+```
+### 'build.bat' will perform cleanup of the following files:
+```
+CSV.ToastNotifier\Release\CSV.ToastNotifier.pdb
+CSV.ToastNotifier\Source Files\Release\CSV.ToastNotifier.pdb
+```
+### 'build.bat' can perform 2 types of build: 'LocalBuild' and 'ProjectBuild'.
+### 'build.bat' will choose build type automatically - based on location of 'build.bat'.
+### 'Project Build':
+### If running 'build.bat' from 'CSV.ToastNotifier\Build System' output will be in 'CSV.ToastNotifier\Release'
+### 'LocalBuild':
+### If running 'build.bat' from 'CSV.ToastNotifier\Source Files' output will be in 'CSV.ToastNotifier\Source Files\Release'
+###
+### 'build.bat' supports compiling project '.csproj' file with MSBuild dotnet and supports compiling directly with .NET Framework 4.8 csc.exe
+### No arguments - performs project '.csproj' compilation with MSBuild dotnet:
 ```cmd
 Build.bat
 ```
+### Explicit project '.csproj' compilation with MSBuild dotnet:
+```cmd
+Build.bat /usedotnet
+```
+### Explicit direct compilation with .NET Framework 4.8 csc.exe compiler:
+```cmd
+Build.bat /useframework
+```
+### 'build.bat' will automatically include 'CSV.ToastNotifier.manifest' and 'Icon.ico' if found near source file.
 
 ### Direct CSC Compilation
 ```cmd
@@ -92,8 +122,8 @@ msbuild CSV.ToastNotifier.csproj /p:Configuration=Release /p:Platform=x64
 
 ### Using dotnet CLI
 ```cmd
-dotnet build -c Release
-dotnet publish -c Release -r win-x64
+dotnet build CSV.ToastNotifier.csproj -c Release -o Release
+dotnet publish CSV.ToastNotifier.csproj -c Release -o Release
 ```
 
 ## 📦 Dependencies
